@@ -26,6 +26,17 @@ class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
   int age = 20;
+  void incrementCounter() {
+    setState(() {
+      weight++;
+    });
+  }
+
+  void decrementCounter() {
+    setState(() {
+      weight--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,14 +151,37 @@ class _InputPageState extends State<InputPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RoundIconButton(
-                                icon: FontAwesomeIcons.minus,
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                                backgroundColor: Color(0xFF4C4F5E),
+                                child: Icon(
+                                  FontAwesomeIcons.minus,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
                               ),
                               SizedBox(
                                 width: 10,
                               ),
-                              RoundIconButton(
-                                icon: FontAwesomeIcons.plus,
+                              // RoundIconButton(
+                              //   icon: FontAwesomeIcons.plus,
+                              // ),
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                                backgroundColor: Color(0xFF4C4F5E),
+                                child: Icon(
+                                  FontAwesomeIcons.plus,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
                               ),
                             ],
                           )
@@ -155,36 +189,57 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 Expanded(
-                  child: ReUsable_Card(
-                    colour: kActiveCardColour,
-                    cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "AGE",
-                            style: kLabelTextStyle,
-                          ),
-                          Text(
-                            age.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Row(
+                    child: ReUsable_Card(
+                  colour: kActiveCardColour,
+                  cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "AGE",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RoundIconButton(
-                                icon: FontAwesomeIcons.minus,
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                                backgroundColor: Color(0xFF4C4F5E),
+                                child: Icon(
+                                  FontAwesomeIcons.minus,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
                               ),
                               SizedBox(
                                 width: 10,
                               ),
-                              RoundIconButton(
-                                icon: FontAwesomeIcons.plus,
+                              // RoundIconButton(
+                              //   icon: FontAwesomeIcons.plus,
+                              // ),
+                              FloatingActionButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                backgroundColor: Color(0xFF4C4F5E),
+                                child: Icon(
+                                  FontAwesomeIcons.plus,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
                               ),
-                            ],
-                          )
-                        ]),
-                  ),
-                )
+                            ]),
+                      ]),
+                ))
               ],
             ),
           ),
@@ -199,31 +254,26 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+//currently to using the roundiconbutton because onpressed functionality not working properly
 
-class RoundIconButton extends StatefulWidget {
-  RoundIconButton({required this.icon});
-  final IconData icon;
-
-  @override
-  State<RoundIconButton> createState() => _RoundIconButtonState();
-}
-
-class _RoundIconButtonState extends State<RoundIconButton> {
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0.0,
-      child: Icon(widget.icon),
-      //know about this property by reading anout size of floating action button
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      onPressed: () {
-        setState(() {});
-      },
-      fillColor: Color(0xFF4C4F5E),
-      shape: CircleBorder(),
-    );
-  }
-}
+// class RoundIconButton extends StatelessWidget {
+//   RoundIconButton({required this.icon, required this.onPressed});
+//   final IconData icon;
+//   final Function onPressed = () {};
+//   @override
+//   Widget build(BuildContext context) {
+//     return RawMaterialButton(
+//       elevation: 0.0,
+//       child: Icon(icon),
+//       //know about this property by reading anout size of floating action button
+//       constraints: BoxConstraints.tightFor(
+//         width: 56.0,
+//         height: 56.0,
+//       ),
+//
+//       onPressed: onPressed,
+//       fillColor: Color(0xFF4C4F5E),
+//       shape: CircleBorder(),
+//     );
+//   }
+// }
